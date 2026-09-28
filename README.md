@@ -1,75 +1,43 @@
-# React + TypeScript + Vite
+# 🍽 Restaurant Booking — Система бронирования столиков
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Учебный SPA-проект по frontend-разработке. Позволяет бронировать столики в ресторане с разделением по ролям (клиент / менеджер) и уведомлениями в реальном времени через WebSocket.
 
-Currently, two official plugins are available:
+## 📋 Стек технологий
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+- **React 19** + **TypeScript**
+- **Vite** — сборка
+- **React Router DOM** — роутинг, приватные маршруты
+- **Redux Toolkit** — глобальное состояние
+- **React Hook Form + Zod** — формы и валидация
+- **CSS Modules** — стилизация, адаптив (desktop + mobile)
+- **Node.js (`http` + `ws`)** — мини-бэкенд: REST API + WebSocket
 
-## React Compiler
+## 🎯 Функционал
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+### Авторизация и роли
+- Регистрация и вход (JWT-токен, хранится в `localStorage`)
+- Две роли: **клиент** и **менеджер** — разный интерфейс и функционал
+- Приватные маршруты (клиентские и менеджерские отдельно)
+- Восстановление сессии при перезагрузке страницы (F5)
 
-## Expanding the ESLint configuration
+### Клиент
+- Многошаговая форма бронирования (3 шага: дата/время → выбор столика → подтверждение)
+- Валидация на каждом шаге (React Hook Form + Zod)
+- Страница «Мои брони» со статусами и возможностью отмены
+- Мгновенные уведомления о смене статуса брони (WebSocket)
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+### Менеджер
+- Список всех броней с фильтрами по статусу
+- Подтверждение / отклонение броней
+- CRUD столиков
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+## 🚀 Как запустить
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
+Требуется **Node.js 18+**.
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+```bash
+# 1. Установить зависимости
+npm install
 
-```
-
-You can also install [eslint-plugin-react-x](https://npmx.dev/package/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://npmx.dev/package/eslint-plugin-react-dom) for React-specific lint rules:
-
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
-
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-
-```
+# 2. Запустить бэкенд + фронтенд одной командой
+npm run dev:all

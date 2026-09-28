@@ -1,0 +1,142 @@
+.wrapper {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.container {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 0 16px;
+  width: 100%;
+}
+
+.header {
+  background: #fff;
+  border-bottom: 1px solid var(--color-border);
+  position: sticky;
+  top: 0;
+  z-index: 10;
+}
+
+.header .container {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+  height: 64px;
+}
+
+.logo {
+  font-size: 18px;
+  font-weight: 700;
+  color: var(--color-primary);
+  white-space: nowrap;
+}
+
+.nav {
+  display: flex;
+  gap: 16px;
+  flex: 1;
+}
+
+.navLink {
+  color: var(--color-text);
+  padding: 6px 10px;
+  border-radius: var(--radius);
+  font-size: 14px;
+}
+
+.navLink:hover {
+  background: var(--color-bg);
+  text-decoration: none;
+}
+
+.navLink.active {
+  color: var(--color-primary);
+  font-weight: 600;
+}
+
+.userBlock {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.userName {
+  font-size: 14px;
+}
+
+.userName small {
+  color: var(--color-muted);
+}
+
+.logoutBtn {
+  background: transparent;
+  border: 1px solid var(--color-border);
+  padding: 6px 12px;
+  border-radius: var(--radius);
+  font-size: 14px;
+}
+
+.logoutBtn:hover {
+  background: var(--color-bg);
+}
+
+.main {
+  flex: 1;
+  padding: 24px 0 40px;
+}
+
+.footer {
+  border-top: 1px solid var(--color-border);
+  padding: 16px 0;
+  color: var(--color-muted);
+  font-size: 13px;
+  text-align: center;
+}
+
+/* ============ Мобильный адаптив ============ */
+@media (max-width: 640px) {
+  .header .container {
+    height: auto;
+    flex-wrap: wrap;
+    padding: 10px 12px;
+    gap: 6px;
+  }
+
+  .logo {
+    font-size: 15px;
+  }
+
+  .userBlock {
+    margin-left: auto;
+    gap: 6px;
+  }
+
+  .userName {
+  display: none;   /* скрываем имя на мобильном */
+}
+
+  .userName small {
+    display: none;
+  }
+
+  .logoutBtn {
+    padding: 5px 10px;
+    font-size: 12px;
+  }
+
+  .nav {
+  order: 3;
+  width: 100%;
+  flex-wrap: wrap;
+  gap: 4px;
+  padding-bottom: 4px;
+}
+
+  .navLink {
+    font-size: 13px;
+    white-space: nowrap;
+    padding: 6px 8px;
+  }
+}
